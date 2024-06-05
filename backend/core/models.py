@@ -28,6 +28,12 @@ APPLICATION_STATUS = (
 )
 
 
+SPECIALIST_POSITION = (
+    ('Глава приема', 'Глава приема'),
+    ('Падаван', 'Падаван')
+)
+
+
 class Educational_Institution(models.Model):
     name = models.CharField(max_length=150, verbose_name='Название')
     address = models.CharField(max_length=100, verbose_name='Адрес')
@@ -131,7 +137,7 @@ class Question(models.Model):
 
 class Specialist(models.Model):
     user = models.ForeignKey('User', on_delete=models.CASCADE, verbose_name='Пользователь')
-    position = models.CharField(max_length=100, verbose_name='Должность')
+    position = models.CharField(max_length=100, verbose_name='Должность', choices=SPECIALIST_POSITION)
 
     class Meta:
         verbose_name = 'Специалист'
@@ -144,6 +150,7 @@ class Specialist(models.Model):
 class Application(models.Model):
     user = models.ForeignKey('User', on_delete=models.CASCADE, verbose_name='Пользователь')
     date = models.DateTimeField(auto_now_add=True, verbose_name='Дата')
+    date_of_appointment = models.DateTimeField(verbose_name='Дата приема', blank=True, null=True)
     profession = models.ForeignKey('Profession', on_delete=models.CASCADE, verbose_name='Специальность')
     specialist = models.ForeignKey('Specialist', on_delete=models.SET_NULL, verbose_name='Специалист', null=True)
     status = models.CharField(max_length=40, verbose_name='Статус', choices=APPLICATION_STATUS, default='Обрабатывается')
