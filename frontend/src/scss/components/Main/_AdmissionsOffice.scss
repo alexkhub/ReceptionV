@@ -1,0 +1,40 @@
+.admissions-office-container {
+  position: relative;
+  padding: 130px 120px 200px 130px;
+  background-color: #d9d9d9e5;
+  .admissions-office-title {
+    position: absolute;
+    top: -83.5px;
+    left: 132px;
+    font-size: 48px;
+    font-weight: 700;
+    padding: 13px 26px;
+    background-color: #d9d9d9e5;
+    border-radius: 25px 25px 0 0;
+  }
+  .description {
+    width: 1304px;
+    font-size: 26px;
+    .advantages {
+      font-size: 48px;
+      width: 891px;
+    }
+    p:last-child {
+      margin-top: 35px;
+    }
+  }
+  .admissions-office-about {
+    text-align: center;
+    font-weight: 700;
+    margin-top: 85px;
+    p:first-child {
+      font-size: 36px;
+    }
+    p:last-child {
+      font-size: 32px;
+      margin: 0 auto;
+      margin-top: 60px;
+      width: 610px;
+    }
+  }
+}

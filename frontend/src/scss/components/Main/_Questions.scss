@@ -1,0 +1,28 @@
+.questions-container {
+    position: relative;
+  background-color: #d1be9c;
+  padding: 70px 110px;
+  font-size: 36px;
+  .questions-title {
+    position: absolute;
+    top: -150px;
+    left: 45px;
+    padding: 30px;
+    background-color: #d1be9c;
+    border-radius: 25px 25px 0 0;
+    p {
+      font-size: 40px;
+      font-weight: 600;
+    }
+  }
+  div {
+    margin-top: 60px;
+    margin-left: 90px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    p {
+      font-weight: 100;
+    }
+  }
+}

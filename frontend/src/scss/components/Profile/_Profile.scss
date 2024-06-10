@@ -1,0 +1,30 @@
+.profile-container {
+  background: rgb(0, 49, 83);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 49, 83, 1) 34%,
+    rgba(0, 67, 113, 1) 61%,
+    rgba(0, 109, 185, 1) 100%
+  );
+  .profile-menu {
+    padding: 50px;
+    i {
+      font-size: 32px;
+      color: rgba(255, 255, 255, 0.5);
+      transition: 0.3s ease color;
+    }
+    i:hover {
+      color: white;
+    }
+  }
+  .profile-content {
+    padding: 0 100px;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@import "./UserInfo";
+@import "./AdmissioinDate";
+@import "./ProfileForm";
+@import "./ProfileEdit";

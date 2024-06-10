@@ -1,0 +1,27 @@
+.admission-date-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .admission-date-title {
+    color: white;
+    font-size: 32px;
+  }
+  .admission-date-timer {
+    margin-top: 40px;
+    padding: 30px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #d9d9d9;
+    border-radius: 10px;
+    span {
+      color: black;
+    }
+    #admission-month {
+      font-size: 32px;
+    }
+    #admission-time {
+      font-size: 64px;
+    }
+  }
+}

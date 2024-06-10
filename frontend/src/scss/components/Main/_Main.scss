@@ -1,0 +1,38 @@
+header {
+  position: relative;
+  height: 620px;
+  .header-profile {
+    position: absolute;
+    top: 40px;
+    right: 60px;
+    padding: 10px;
+    border-radius: 100%;
+    background-color: #003153;
+    img {
+      width: 20px;
+    }
+  }
+  .header-background-img {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    width: 100%;
+  }
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid #003153;
+  background-color: #D1BE9C;
+  text-align: center;
+  padding: 40px;
+  p {
+    font-size: 40px;
+  }
+}
+
+@import "./Structure";
+@import "./AdmissionsOffice";
+@import "./Questions";
