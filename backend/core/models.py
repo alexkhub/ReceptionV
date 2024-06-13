@@ -1,7 +1,6 @@
 from django.contrib.auth.hashers import make_password
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from sortedm2m.fields import SortedManyToManyField
 from autoslug import AutoSlugField
 from datetime import datetime
 
@@ -30,7 +29,7 @@ APPLICATION_STATUS = (
 
 SPECIALIST_POSITION = (
     ('Глава приема', 'Глава приема'),
-    ('Падаван', 'Падаван')
+    ('Член приемной комиссии', 'Член приемной комиссии')
 )
 
 
@@ -47,7 +46,7 @@ class Educational_Institution(models.Model):
 
 
 class User(AbstractUser):
-    phone = models.CharField(max_length=20, verbose_name="Телефон", blank=True)
+    surname = models.CharField(max_length=100, verbose_name='Отчество',  blank=True, null=True)
     slug = AutoSlugField(populate_from='username', unique=True, verbose_name='URL', )
     birthday = models.DateField(verbose_name='Дата рождения', blank=True, null=True)
     address = models.CharField(max_length=150, blank=True, verbose_name='Адрес', null=True)
@@ -68,6 +67,7 @@ class User(AbstractUser):
         return f"{self.username}"
 
     def save(self, *args, **kwargs):
+        self.username = self.email
         if self.password and not self.password.startswith(('pbkdf2_sha256$', 'bcrypt$', 'argon2')):
             self.password = make_password(self.password)
 
@@ -138,6 +138,7 @@ class Question(models.Model):
 class Specialist(models.Model):
     user = models.ForeignKey('User', on_delete=models.CASCADE, verbose_name='Пользователь')
     position = models.CharField(max_length=100, verbose_name='Должность', choices=SPECIALIST_POSITION)
+    text = models.TextField(verbose_name='Речь', blank=True, null=True)
 
     class Meta:
         verbose_name = 'Специалист'

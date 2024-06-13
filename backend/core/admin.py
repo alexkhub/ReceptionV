@@ -12,10 +12,10 @@ class Educational_InstitutionAdmin(admin.ModelAdmin):
 
 class UserAdmin(admin.ModelAdmin):
     list_display = (
-        'id', 'username', 'email', 'phone', 'year_of_graduation', 'educational_institution', 'level_of_education',
+        'id',  'email',  'year_of_graduation', 'educational_institution', 'level_of_education',
         'use_result', 'gpa', 'is_staff',)
-    list_display_links = ('id', 'username', 'email', 'phone',)
-    search_fields = ('id', 'username', 'phone', 'email',)
+    list_display_links = ('id',  'email', )
+    search_fields = ('id',   'email',)
     list_filter = ('is_staff', 'level_of_education', 'year_of_graduation',)
 
 
@@ -48,7 +48,7 @@ class SpecialistAdmin(admin.ModelAdmin):
 
 
 class ApplicationAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'profession' , 'specialist', 'status', 'date', 'date_of_appointment',)
+    list_display = ('id', 'user', 'profession', 'specialist', 'status', 'date', 'date_of_appointment',)
     search_fields = ('user__username', 'profession__name',)
     list_filter = ('status', 'date', 'date_of_appointment', 'profession__name',)
     list_editable = ('status', 'date_of_appointment',)
