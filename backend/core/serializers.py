@@ -50,3 +50,19 @@ class List_QuestionsSerializer(serializers.ModelSerializer):
         fields = ('id', 'text')
 
 
+class ApplicationCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Application
+        fields = ('id',)
+
+    def create(self, validated_data):
+        validated_data['user'] = self.context['request'].user
+        advertisement = Application.objects.create(**validated_data)
+
+        return advertisement
+
+
+class ApplicationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Application
+        fields = '__all__'

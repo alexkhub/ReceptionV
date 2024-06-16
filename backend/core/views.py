@@ -62,3 +62,25 @@ class  List_QuestionsListView(ListAPIView):
         queryset = self.filter_queryset(self.get_queryset())
         serializer = self.get_serializer(queryset, many=True)
         return Response({'list_question': serializer.data}, status=status.HTTP_200_OK)
+
+class ApplicationCreateView(CreateAPIView):
+    queryset = Application.objects.all()
+    serializer_class = ApplicationCreateSerializer
+    permission_classes = (IsAuthenticated,)
+    authentication_classes = (JWTAuthentication,)
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+
+class ApplicationListView(ListAPIView):
+    queryset = Application.objects.all()
+    serializer_class = ApplicationSerializer
+    permission_classes = (IsAuthenticated,)
+    authentication_classes = (JWTAuthentication,)
+    def get_queryset(self):
+        return self.queryset.filter(user=self.request.user)[:1]

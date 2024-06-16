@@ -54,6 +54,7 @@ class ApplicationAdmin(admin.ModelAdmin):
     list_editable = ('status', 'date_of_appointment',)
 
 
+
 admin.site.register(Educational_Institution, Educational_InstitutionAdmin)
 admin.site.register(User, UserAdmin)
 admin.site.register(Document, DocumentAdmin)
