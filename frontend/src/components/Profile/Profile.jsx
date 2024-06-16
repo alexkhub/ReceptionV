@@ -9,7 +9,7 @@ function Profile() {
     <div className="profile-container">
       <div className="profile-menu">
         <Link to="/main">
-          <i class="fas fa-home"></i>
+          <i className="fas fa-home"></i>
         </Link>
       </div>
       <div className="profile-content">
