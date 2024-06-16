@@ -46,6 +46,7 @@ class Educational_Institution(models.Model):
 
 
 class User(AbstractUser):
+    phone = models.CharField(max_length=100, verbose_name='Номер телефона', blank=True, null=True)
     surname = models.CharField(max_length=100, verbose_name='Отчество',  blank=True, null=True)
     slug = AutoSlugField(populate_from='username', unique=True, verbose_name='URL', )
     birthday = models.DateField(verbose_name='Дата рождения', blank=True, null=True)
@@ -87,6 +88,11 @@ class Document(models.Model):
 
     def __str__(self):
         return f'{self.user}-{self.name}'
+
+    def save(self, *args, **kwargs):
+        self.name = f'{self.user.name} - {self.document_type}'
+
+        super().save(*args, **kwargs)
 
 
 class Profession(models.Model):
@@ -152,7 +158,7 @@ class Application(models.Model):
     user = models.ForeignKey('User', on_delete=models.CASCADE, verbose_name='Пользователь')
     date = models.DateTimeField(auto_now_add=True, verbose_name='Дата')
     date_of_appointment = models.DateTimeField(verbose_name='Дата приема', blank=True, null=True)
-    profession = models.ForeignKey('Profession', on_delete=models.CASCADE, verbose_name='Специальность')
+    profession = models.ForeignKey('Profession', on_delete=models.CASCADE, verbose_name='Специальность', null=True)
     specialist = models.ForeignKey('Specialist', on_delete=models.SET_NULL, verbose_name='Специалист', null=True)
     status = models.CharField(max_length=40, verbose_name='Статус', choices=APPLICATION_STATUS, default='Обрабатывается')
 
